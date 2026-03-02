@@ -462,11 +462,47 @@
     walls = chkWalls.checked;
   });
 
+  function wireMobileButtons() {
+    const mcUp = document.getElementById('mcUp');
+    const mcDown = document.getElementById('mcDown');
+    const mcLeft = document.getElementById('mcLeft');
+    const mcRight = document.getElementById('mcRight');
+    const mcPause = document.getElementById('mcPause');
+
+    const press = (el, d) => {
+      if (!el) return;
+      // Use pointer events so it works on touch + mouse
+      el.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        if (d) setDir(d);
+        // If game hasn't started yet, start on first directional press
+        if (!running && !dead) start();
+      });
+    };
+
+    press(mcUp, DIRS.up);
+    press(mcDown, DIRS.down);
+    press(mcLeft, DIRS.left);
+    press(mcRight, DIRS.right);
+
+    if (mcPause) {
+      mcPause.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        togglePause();
+      });
+    }
+  }
+
   // keyboard + touch
   window.addEventListener('keydown', onKeyDown);
   canvas.addEventListener('pointerdown', onPointerDown);
   canvas.addEventListener('pointerup', onPointerUp);
   canvas.addEventListener('pointercancel', () => { pointerDown = null; });
+
+  // prevent double-tap zoom / scroll quirks
+  document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+
+  wireMobileButtons();
 
   // init
   elBest.textContent = String(best);

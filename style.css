@@ -77,6 +77,49 @@ canvas{
   touch-action: none;
 }
 
+/* Mobile D-pad (shown on small screens) */
+.mobile-controls{
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: none;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mobile-controls .mc-row{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mc-btn{
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(11,16,32,0.60);
+  color: var(--text);
+  font-weight: 800;
+  font-size: 18px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.mc-btn:active{
+  transform: translateY(1px);
+  filter: brightness(1.12);
+}
+
+.mc-center{
+  width: 64px;
+}
+
 .panel{
   background: var(--panel);
   border: 1px solid rgba(255,255,255,0.10);
@@ -177,4 +220,12 @@ kbd{
 @media (max-width: 920px){
   .main{ grid-template-columns: 1fr; }
   .board-wrap{ width: min(92vmin, 700px); }
+}
+
+@media (max-width: 680px){
+  .top{ padding: 12px 12px; }
+  .main{ padding: 0 12px 12px; gap: 12px; }
+  .panel{ padding: 12px; }
+  .mobile-controls{ display: grid; grid-template-rows: auto auto auto; }
+  .overlay{ padding-bottom: 90px; } /* keep overlay buttons above d-pad */
 }

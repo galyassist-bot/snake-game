@@ -20,6 +20,17 @@
   <main class="main">
     <section class="board-wrap">
       <canvas id="game" width="600" height="600" aria-label="Snake game"></canvas>
+
+      <div class="mobile-controls" aria-label="Mobile controls">
+        <button class="mc-btn" id="mcUp" aria-label="Up">▲</button>
+        <div class="mc-row">
+          <button class="mc-btn" id="mcLeft" aria-label="Left">◀</button>
+          <button class="mc-btn mc-center" id="mcPause" aria-label="Pause">⏯</button>
+          <button class="mc-btn" id="mcRight" aria-label="Right">▶</button>
+        </div>
+        <button class="mc-btn" id="mcDown" aria-label="Down">▼</button>
+      </div>
+
       <div id="overlay" class="overlay" aria-live="polite">
         <div class="card">
           <h1 id="overlayTitle">Snake</h1>
