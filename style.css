@@ -125,9 +125,6 @@ canvas{
   filter: brightness(1.20);
 }
 
-.mc-center{
-  width: 52px;
-}
 
 .panel{
   background: var(--panel);

@@ -485,7 +485,6 @@
     const mcDown = document.getElementById('mcDown');
     const mcLeft = document.getElementById('mcLeft');
     const mcRight = document.getElementById('mcRight');
-    const mcPause = document.getElementById('mcPause');
 
     const press = (el, d) => {
       if (!el) return;
@@ -503,12 +502,6 @@
     press(mcLeft, DIRS.left);
     press(mcRight, DIRS.right);
 
-    if (mcPause) {
-      mcPause.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        togglePause();
-      });
-    }
   }
 
   // keyboard + touch
