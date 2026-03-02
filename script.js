@@ -8,6 +8,24 @@
   const canvas = document.getElementById('game');
   const ctx = canvas.getContext('2d');
 
+  // Retina/HiDPI canvas: match backing store to CSS pixels to avoid blur on iPhone
+  function resizeCanvasToCSSPixels() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+    // Backing store in device pixels
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+    }
+
+    // Draw in CSS pixels (so all existing math stays in px)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
   const elScore = document.getElementById('score');
   const elBest = document.getElementById('best');
   const elSpeed = document.getElementById('speed');
@@ -507,6 +525,12 @@
   // init
   elBest.textContent = String(best);
   resetState();
+
+  // Resize once after layout and on orientation changes
+  queueMicrotask(resizeCanvasToCSSPixels);
+  window.addEventListener('resize', () => resizeCanvasToCSSPixels(), { passive: true });
+  window.addEventListener('orientationchange', () => resizeCanvasToCSSPixels(), { passive: true });
+
   cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(loop);
 })();

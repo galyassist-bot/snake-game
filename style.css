@@ -13,7 +13,7 @@
 }
 
 *{ box-sizing: border-box; }
-html,body{ height:100%; }
+html,body{ height:100%; overscroll-behavior: none; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -227,5 +227,11 @@ kbd{
   .main{ padding: 0 12px 12px; gap: 12px; }
   .panel{ padding: 12px; }
   .mobile-controls{ display: grid; grid-template-rows: auto auto auto; }
-  .overlay{ padding-bottom: 90px; } /* keep overlay buttons above d-pad */
+  .overlay{ padding-bottom: calc(90px + env(safe-area-inset-bottom)); } /* keep overlay buttons above d-pad */
+}
+
+@media (max-height: 520px){
+  /* landscape-ish phones: reduce clutter */
+  .panel{ display:none; }
+  .main{ padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
 }
