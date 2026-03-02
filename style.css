@@ -80,44 +80,53 @@ canvas{
 /* Mobile D-pad (shown on small screens) */
 .mobile-controls{
   position: absolute;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
+  left: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  transform: none;
   display: none;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   z-index: 3;
   user-select: none;
   -webkit-user-select: none;
+  opacity: 0.55;
+}
+
+/* Fade in controls when user interacts */
+.board-wrap:active .mobile-controls,
+.mobile-controls:active,
+.mobile-controls:focus-within{
+  opacity: 0.95;
 }
 
 .mobile-controls .mc-row{
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
 .mc-btn{
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(11,16,32,0.60);
-  color: var(--text);
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(11,16,32,0.42);
+  color: rgba(232,238,252,0.92);
   font-weight: 800;
-  font-size: 18px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  font-size: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
 }
 
 .mc-btn:active{
   transform: translateY(1px);
-  filter: brightness(1.12);
+  filter: brightness(1.20);
 }
 
 .mc-center{
-  width: 64px;
+  width: 52px;
 }
 
 .panel{
@@ -227,7 +236,7 @@ kbd{
   .main{ padding: 0 12px 12px; gap: 12px; }
   .panel{ padding: 12px; }
   .mobile-controls{ display: grid; grid-template-rows: auto auto auto; }
-  .overlay{ padding-bottom: calc(90px + env(safe-area-inset-bottom)); } /* keep overlay buttons above d-pad */
+  .overlay{ padding-bottom: calc(90px + env(safe-area-inset-bottom)); } /* keep overlay buttons above controls */
 }
 
 @media (max-height: 520px){
