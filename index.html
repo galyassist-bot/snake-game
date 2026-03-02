@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snake</title>
+  <meta name="description" content="A classic Snake game." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Snake</div>
+    <div class="stats">
+      <div class="stat"><span class="label">Score</span> <span id="score">0</span></div>
+      <div class="stat"><span class="label">Best</span> <span id="best">0</span></div>
+      <div class="stat"><span class="label">Speed</span> <span id="speed">1.0×</span></div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="board-wrap">
+      <canvas id="game" width="600" height="600" aria-label="Snake game"></canvas>
+      <div id="overlay" class="overlay" aria-live="polite">
+        <div class="card">
+          <h1 id="overlayTitle">Snake</h1>
+          <p id="overlayText">Press <kbd>Space</kbd> to start. Use <kbd>Arrow</kbd> keys or <kbd>WASD</kbd>.</p>
+          <div class="buttons">
+            <button id="btnStart" class="primary">Start</button>
+            <button id="btnHow">How to play</button>
+          </div>
+          <p class="hint">Mobile: swipe on the board to turn. Tap to pause.</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2>Controls</h2>
+      <ul>
+        <li><strong>Move:</strong> Arrow keys / WASD</li>
+        <li><strong>Start / Pause:</strong> Space</li>
+        <li><strong>Restart:</strong> R</li>
+      </ul>
+
+      <h2>Options</h2>
+      <div class="row">
+        <label for="selSize">Board</label>
+        <select id="selSize">
+          <option value="20">20×20 (classic)</option>
+          <option value="24">24×24</option>
+          <option value="30">30×30 (hard)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="selSpeed">Speed</label>
+        <select id="selSpeed">
+          <option value="120">Normal</option>
+          <option value="95">Fast</option>
+          <option value="75">Insane</option>
+        </select>
+      </div>
+      <div class="row">
+        <label class="check"><input id="chkWalls" type="checkbox" checked /> Walls (die on edge)</label>
+      </div>
+      <div class="row">
+        <button id="btnRestart" class="danger">Restart</button>
+      </div>
+
+      <p class="small">Tip: each food increases speed a bit.</p>
+
+      <footer class="small">
+        <a href="https://github.com/galyassist-bot/snake-game" target="_blank" rel="noreferrer">Source on GitHub</a>
+      </footer>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
